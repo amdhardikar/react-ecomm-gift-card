@@ -1,5 +1,6 @@
 {
    "name": "ecomm-gift-card",
+   "homepage": "https://amdhardikar.github.io/react-ecomm-gift-card/",
    "version": "0.1.0",
    "private": true,
    "dependencies": {
