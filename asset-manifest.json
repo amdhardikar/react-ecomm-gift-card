@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.fe681544.css",
-    "main.js": "/static/js/main.694d586e.js",
-    "static/js/787.25555938.chunk.js": "/static/js/787.25555938.chunk.js",
-    "static/media/sponsors.svg": "/static/media/sponsors.26269a912b2ed4d1d259fc8aa0c5bc0a.svg",
-    "static/media/paytm.svg": "/static/media/paytm.c6c0b9548e0bdc12a1e60566cb112aa4.svg",
-    "static/media/logo.svg": "/static/media/logo.e6d64d5e6233a5df526f2d68b8b9a920.svg",
-    "index.html": "/index.html",
-    "main.fe681544.css.map": "/static/css/main.fe681544.css.map",
-    "main.694d586e.js.map": "/static/js/main.694d586e.js.map",
-    "787.25555938.chunk.js.map": "/static/js/787.25555938.chunk.js.map"
+    "main.css": "/react-ecomm-gift-card/static/css/main.fe681544.css",
+    "main.js": "/react-ecomm-gift-card/static/js/main.a08a7757.js",
+    "static/js/787.25555938.chunk.js": "/react-ecomm-gift-card/static/js/787.25555938.chunk.js",
+    "static/media/sponsors.svg": "/react-ecomm-gift-card/static/media/sponsors.26269a912b2ed4d1d259fc8aa0c5bc0a.svg",
+    "static/media/paytm.svg": "/react-ecomm-gift-card/static/media/paytm.c6c0b9548e0bdc12a1e60566cb112aa4.svg",
+    "static/media/logo.svg": "/react-ecomm-gift-card/static/media/logo.e6d64d5e6233a5df526f2d68b8b9a920.svg",
+    "index.html": "/react-ecomm-gift-card/index.html",
+    "main.fe681544.css.map": "/react-ecomm-gift-card/static/css/main.fe681544.css.map",
+    "main.a08a7757.js.map": "/react-ecomm-gift-card/static/js/main.a08a7757.js.map",
+    "787.25555938.chunk.js.map": "/react-ecomm-gift-card/static/js/787.25555938.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fe681544.css",
-    "static/js/main.694d586e.js"
+    "static/js/main.a08a7757.js"
   ]
 }
