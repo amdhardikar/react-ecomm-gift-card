@@ -1,166 +1,172 @@
-import logo from './assetes/logo.svg'
-import sponsors from './assetes/sponsors.svg'
-import paytm from './assetes/paytm.svg'
-
-const styles = {
-   appContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100vh',
-   },
-   sponsors: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      height: '40%',
-      backgroundColor: '#222d3a',
-      color: 'white',
-      textAlign: 'center',
-   },
-   sponsorsTitle: {
-      marginTop: '50px',
-      fontSize: '40px',
-      fontWeight: '700',
-   },
-   greetTitle: {
-      fontSize: '35px',
-      fontWeight: '600',
-      textTransform: 'capitalize',
-      color: '#d41fb5',
-      marginTop: '10px',
-   },
-   inputContainer: {
-      height: '60%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-   },
-   information: {
-      textAlign: 'center',
-      marginTop: '150px',
-   },
-   box: {
-      marginTop: '20px',
-      width: '330px',
-      height: '60px',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-   },
-   buttonBox: {
-      backgroundColor: '#c9c9c9',
-      border: 'none',
-      borderRadius: '50px',
-      width: '100%',
-      margin: '0',
-      fontSize: '17px',
-      padding: '15px 20px',
-      textAlign: 'center',
-      height: '100%',
-   },
-   inputBox: {
-      backgroundColor: '#f5f6f9',
-      border: 'none',
-      borderRadius: '50px',
-      height: 'calc(100% - 34px)',
-      width: 'calc(100% - 40px)',
-      margin: '0',
-      fontSize: '20px',
-      letterSpacing: '2px',
-      padding: '15px 20px',
-      textAlign: 'center',
-   },
-   condition: {
-      fontSize: '11px',
-   },
-   cosponsors: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginTop: '30px',
-   },
-   giftContainer: {
-      position: 'absolute',
-      padding: '30px 30px',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'white',
-      borderRadius: '40px',
-      top: '40%',
-      left: '50%',
-      width: '300px',
-      transform: 'translate(-50%, -50%)',
-      boxShadow: '0px 10px 10px 0px #edededb7',
-   },
-   cardBody: {
-      fontFamily: `'Fugaz One', 'cursive'`,
-      color: '#fc664d',
-      fontSize: '50px',
-   },
-}
+import logo from './assets/logo.svg'
+import sponsors from './assets/sponsors.svg'
+import paytm from './assets/paytm.svg'
+import whatsapp from './assets/whatsapp.png'
+import box from './assets/box.png'
+import close from './assets/close.png'
+import './App.css'
+import { useEffect, useRef, useState } from 'react'
 
 function App() {
+   const [number, setNumber] = useState('')
+   const [flag, setFlag] = useState(false)
+   const [visible, setVisible] = useState(false)
+   const inputRef = useRef()
+
+   const changeHandler = (e) => {
+      let value = e.target.value
+      if (!isNaN(value) && value.length <= 10) setNumber(value)
+   }
+
+   const clickHandler = () => {
+      if (number.length === 10) {
+         localStorage.setItem('number', number)
+         setVisible(true)
+      }
+   }
+
+   useEffect(() => {
+      inputRef.current.focus()
+      if (localStorage.getItem('number') !== null) {
+         setVisible(true)
+      }
+      if (number.length < 10) {
+         setFlag(false)
+      }
+      if (number.length === 10) {
+         setFlag(true)
+      }
+   }, [number])
+
    return (
-      <div style={styles.appContainer}>
-         <div style={styles.sponsors}>
-            <div style={styles.sponsorsTitle}>
+      <div className="app-container">
+         {/* sponsors part */}
+         <div className="sponsors">
+            <div className="sponsors-title">
                <img src={sponsors} alt="man matters" width={200} />
             </div>
-            <div style={styles.greetTitle}>congratulation 🥳</div>
+            <div className="greet-title">congratulation 🥳</div>
          </div>
-         <div style={styles.inputContainer}>
-            <div style={styles.information}>
-               <p>
-                  You Have WON Paytm Gift <br /> Card of Rs 200{' '}
-                  <strong>
-                     for placing the order <br /> on Man Matters
-                  </strong>
-               </p>
+
+         {visible === false ? (
+            // input box
+            <div className="input-container">
+               <div className="information">
+                  <p>
+                     You Have WON Paytm Gift <br /> Card of Rs 200{' '}
+                     <strong>
+                        for placing the order <br /> on Man Matters
+                     </strong>
+                  </p>
+               </div>
+               <div className="box">
+                  <input
+                     type="text"
+                     placeholder="Enter Mobile Number"
+                     className="input-box"
+                     value={number}
+                     onChange={changeHandler}
+                     ref={inputRef}
+                  />
+               </div>
+               <div className="condition">
+                  Enter the same number used on Man Matters
+               </div>
+               <div className="box">
+                  {flag === false ? (
+                     <input
+                        className="button-box"
+                        type="button"
+                        value="Wow! Get my Paytm Gift Card >"
+                        disabled
+                     />
+                  ) : (
+                     <input
+                        className="button-box active"
+                        type="button"
+                        value="Wow! Get my Paytm Gift Card >"
+                        onClick={clickHandler}
+                     />
+                  )}
+               </div>
+               <div className="cosponsors">
+                  <small>Powered by</small>
+                  <img
+                     src={logo}
+                     alt="gokwik"
+                     height={15}
+                     width={15}
+                     style={{ marginLeft: '10px' }}
+                  />
+                  <small style={{ fontWeight: '700' }}>GoKwik</small>
+               </div>
             </div>
-            <div style={styles.box}>
-               <input
-                  type="text"
-                  maxLength={10}
-                  min={7000000000}
-                  placeholder="Enter Mobile Number"
-                  style={styles.inputBox}
-               />
+         ) : (
+            // output box
+            <div className="questions-body">
+               <div className="questions-container">
+                  <div className="question">
+                     Where will i get the gift card?
+                  </div>
+                  <div className="questions-box">
+                     <img
+                        src={whatsapp}
+                        alt="whatsapp"
+                        style={{ margin: '0px 10px' }}
+                     />
+                     <div>
+                        You will receive it on Whatsapp/SMS on your mobile.
+                     </div>
+                  </div>
+               </div>
+               <div className="questions-container">
+                  <div className="question">
+                     When will i receive the gift card?
+                  </div>
+                  <div className="questions-box">
+                     <img
+                        src={box}
+                        alt="package"
+                        style={{ margin: '0px 10px' }}
+                     />
+                     <div>
+                        Within 48 hours, when your Man Matters order is
+                        delivered.
+                     </div>
+                  </div>
+               </div>
+               <div className="questions-container">
+                  <div className="question">What if i cancel the order?</div>
+                  <div className="questions-box">
+                     <img
+                        src={close}
+                        alt="cancel"
+                        style={{ margin: '0px 10px' }}
+                     />
+                     <div>
+                        The voucher will not delivered if you cancel the order
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div style={styles.condition}>
-               Enter the same number used on Man Matters
-            </div>
-            <div style={styles.box}>
-               <input
-                  style={styles.buttonBox}
-                  type="button"
-                  value="Wow! Get my Paytm Gift Card"
-               />
-            </div>
-            <div style={styles.cosponsors}>
-               <small>Powered by</small>
-               <img
-                  src={logo}
-                  alt="gokwik"
-                  height={15}
-                  width={15}
-                  style={{ marginLeft: '10px' }}
-               />
-               <small style={{ fontWeight: '700' }}>GoKwik</small>
-            </div>
-         </div>
-         <div style={styles.giftContainer}>
-            <div style={styles.cardTitle}>
-               <img src={paytm} alt="paytm" height={50}/>
+         )}
+
+         {/* card */}
+         <div className="gift-container">
+            <div className="card-title">
+               <img src={paytm} alt="paytm" height={55} />
             </div>
             <div>
-               <p style={styles.cardBody}>
-                  Gift{' '}
-                  <small style={{ ...styles.cardBody, fontSize: '25px' }}>
+               <p className="card-body">
+                  Gift
+                  <sub className="card-body" style={{ fontSize: '25px' }}>
                      Card
-                  </small>{' '}
+                  </sub>
+                  <sup
+                     className="card-body"
+                     style={{ fontSize: '30px', fontWeight: '700' }}>
+                     &#8377;
+                  </sup>
                   200
                </p>
             </div>
